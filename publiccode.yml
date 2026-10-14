@@ -1,0 +1,54 @@
+publiccodeYmlVersion: "0.7"
+
+name: NL-SBB-skills
+url: https://github.com/Geonovum/skills-nl-sbb.git
+softwareVersion: "0.0.0"
+releaseDate: "2026-10-14"
+landingURL: https://github.com/Geonovum/skills-nl-sbb
+softwareType: addon
+
+platforms:
+  - linux
+  - mac
+  - windows
+
+developmentStatus: development
+
+description:
+  nl:
+    shortDescription: Agent-skills van Geonovum voor de standaard NL-SBB, te beginnen met een reviewskill voor begrippenkaders.
+    longDescription: >
+      Deze repository bevat agent-skills van Geonovum voor NL-SBB, de Nederlandse standaard voor het beschrijven van begrippen. Een agent-skill is een instructiedocument dat een AI-assistent erbij pakt zodra het onderwerp langskomt. De eerste skill beoordeelt een begrippenkader aan de hand van NL-SBB: een inhoudelijke review van termen, definities, bronnen en relaties, met optioneel een machinale SHACL-validatie tegen het normatieve profiel en een controle van de gebruikte bronnen. De skills zijn hulpmiddelen en maken geen deel uit van de standaard; de publicatie op docs.geostandaarden.nl en het SHACL-profiel in het register zijn leidend.
+    features:
+      - Agent skill voor de inhoudelijke beoordeling van een begrippenkader volgens de NL-SBB standaard
+      - Optionele SHACL-validatie tegen het normatieve profiel skos-ap-nl met pySHACL, aangevuld met een extensie voor regels die het profiel niet toetst
+      - Optionele bronnencontrole op bereikbaarheid en een uitbreidbare bronnenlijst
+      - Rapport met fouten, waarschuwingen, aanbevelingen, totaaloordeel en publicatieadvies; het bronbestand wordt nooit gewijzigd
+
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Geonovum
+
+intendedAudience:
+  countries:
+    - NL
+  scope:
+    - government
+
+localisation:
+  availableLanguages:
+    - nl
+  localisationReady: false
+
+maintenance:
+  type: internal
+  contacts:
+    - name: Frank Terpstra
+      affiliation: Geonovum
+
+organisation:
+  name: Geonovum
+  uri: https://organisaties.overheid.nl/27912339/Stichting_Geonovum
+
+supports:
+  - id: https://docs.geostandaarden.nl/nl-sbb/def-st-nl-sbb-20241010/

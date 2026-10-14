@@ -1,0 +1,5 @@
+{
+  "name": "geonovum-nl-sbb",
+  "description": "Skills van Geonovum voor NL-SBB, de Nederlandse standaard voor het beschrijven van begrippen: review van begrippenkaders op termen, definities, bronnen en relaties, met optionele SHACL-validatie en bronnencontrole.",
+  "version": "0.0.0"
+}
