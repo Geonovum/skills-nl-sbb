@@ -2,8 +2,8 @@ publiccodeYmlVersion: "0.7"
 
 name: NL-SBB-skills
 url: https://github.com/Geonovum/skills-nl-sbb.git
-softwareVersion: "0.0.0"
-releaseDate: "2026-10-14"
+softwareVersion: "0.1.0"
+releaseDate: "2026-10-15"
 landingURL: https://github.com/Geonovum/skills-nl-sbb
 softwareType: addon
 
