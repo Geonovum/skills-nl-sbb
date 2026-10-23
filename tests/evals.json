@@ -1,0 +1,63 @@
+{
+  "skill_name": "geonovum-nl-sbb-review",
+  "evals": [
+    {
+      "id": 1,
+      "naam": "imgeo-mini-volledig",
+      "prompt": "Beoordeel het begrippenkader tests/fixtures/imgeo-mini/imgeo-mini.ttl volgens NL-SBB. Voer beide optionele modules uit (SHACL-validatie en bronnencontrole).",
+      "expected_output": "Rapport volgens de vaste rapportstructuur met 3 sh:Violation, 17 sh:Warning en 20 sh:Info, de 14 aangebrachte fouten uit tests/fixtures/imgeo-mini/verwacht.md, totaaloordeel 'Voldoet gedeeltelijk' (of 'Voldoet niet') en publicatieadvies 'nee'.",
+      "files": ["tests/fixtures/imgeo-mini/imgeo-mini.ttl"],
+      "expectations": [
+        "De SHACL-validatie gebruikt één samengevoegde shapes-graaf van profiel en extensie, niet pyshacl -e",
+        "Het rapport noemt 3 sh:Violation, 17 sh:Warning en 20 sh:Info",
+        "Mast, Bak en Begroeidterreindeel worden als Fout gemeld: topbegrip met bovenliggend begrip",
+        "Voor Bak en Begroeidterreindeel wordt vermeld dat het bovenliggende begrip niet in het kader bestaat",
+        "De dubbele voorkeursterm 'plus-type' wordt gemeld",
+        "De identieke definitie van de drie niet-bgt-begrippen wordt gemeld",
+        "De hoofdletter in 'Buurt' wordt gemeld",
+        "De leestekens in 'greppel, droge sloot' en 'inspectie- / rioolput' worden gemeld",
+        "'verharden wegdeel' wordt als werkwoordsvorm of afwijkende term gemeld",
+        "De tekstcoderingsfout in de definitie van duiker wordt gemeld",
+        "De circulaire definitie van 'overig bouwwerk' wordt gemeld",
+        "Paal wordt als verweesd begrip gemeld",
+        "De collectie Functiewegdeel zonder skos:prefLabel wordt gemeld",
+        "Het ontbreken van dct:title bij het begrippenkader wordt gemeld",
+        "De Engelse CamelCase-term 'CityFurniture' met taal-tag @nl wordt gemeld",
+        "Molgoot wordt niet als echt verweesd begrip gerapporteerd, of de melding wordt als beperking van het profiel benoemd",
+        "Het rapport bevat geen verzonnen bevindingen en geen telfouten",
+        "Het totaaloordeel is 'Voldoet gedeeltelijk aan NL-SBB' of 'Voldoet niet aan NL-SBB' en het publicatieadvies is 'nee'",
+        "Het bronbestand is niet gewijzigd"
+      ]
+    },
+    {
+      "id": 2,
+      "naam": "imgeo-mini-zonder-tools",
+      "prompt": "Beoordeel het begrippenkader tests/fixtures/imgeo-mini/imgeo-mini.ttl volgens NL-SBB. Doe alleen de basisreview, zonder optionele modules.",
+      "expected_output": "Rapport zonder SHACL-sectie, waarin staat dat beide modules zijn overgeslagen, en dat de inhoudelijke fouten 3 tot en met 14 uit verwacht.md bevat.",
+      "files": ["tests/fixtures/imgeo-mini/imgeo-mini.ttl"],
+      "expectations": [
+        "Het rapport vermeldt dat de SHACL-validatie en de bronnencontrole niet zijn uitgevoerd",
+        "Het rapport presenteert geen sh:Violation-aantallen alsof er gevalideerd is",
+        "Mast wordt als topbegrip met bovenliggend begrip gesignaleerd",
+        "De termconventies (fout 5 tot en met 8 en 14) worden gemeld",
+        "De tekstcoderingsfout en de circulaire definitie worden gemeld",
+        "Het bronbestand is niet gewijzigd"
+      ]
+    },
+    {
+      "id": 3,
+      "naam": "stresstest-stelselcatalogus",
+      "prompt": "Beoordeel de export van de stelselcatalogus volgens NL-SBB, met SHACL-validatie. Het bestand staat op het pad dat de tester meegeeft; zie tests/stresstest/stelselcatalogus.md.",
+      "expected_output": "Een rapport dat de validatie afrondt, de aantallen per ernstniveau uit de telling haalt en per begrippenkader onderscheid maakt. Exacte aantallen gelden alleen voor de export met het controlegetal in stelselcatalogus.md.",
+      "files": [],
+      "expectations": [
+        "De validatie loopt tot het eind; een time-out of geheugenfout wordt als zodanig gemeld",
+        "Het rapport herkent dat het bestand meerdere begrippenkaders bevat en noemt het aantal",
+        "De aantallen per ernstniveau komen uit de telling van de resultaten, niet uit het conforms-veld",
+        "Het rapport vermeldt welke inhoudelijke controles uitputtend zijn gedaan en welke op steekproef",
+        "Begrippen zonder skos:inScheme worden gemeld",
+        "Het rapport bevat geen aantallen die niet uit de bron of de validatie volgen"
+      ]
+    }
+  ]
+}
