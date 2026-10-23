@@ -6,7 +6,9 @@
       "naam": "imgeo-mini-volledig",
       "prompt": "Beoordeel het begrippenkader tests/fixtures/imgeo-mini/imgeo-mini.ttl volgens NL-SBB. Voer beide optionele modules uit (SHACL-validatie en bronnencontrole).",
       "expected_output": "Rapport volgens de vaste rapportstructuur met 3 sh:Violation, 17 sh:Warning en 20 sh:Info, de 14 aangebrachte fouten uit tests/fixtures/imgeo-mini/verwacht.md, totaaloordeel 'Voldoet gedeeltelijk' (of 'Voldoet niet') en publicatieadvies 'nee'.",
-      "files": ["tests/fixtures/imgeo-mini/imgeo-mini.ttl"],
+      "files": [
+        "tests/fixtures/imgeo-mini/imgeo-mini.ttl"
+      ],
       "expectations": [
         "De SHACL-validatie gebruikt één samengevoegde shapes-graaf van profiel en extensie, niet pyshacl -e",
         "Het rapport noemt 3 sh:Violation, 17 sh:Warning en 20 sh:Info",
@@ -34,7 +36,9 @@
       "naam": "imgeo-mini-zonder-tools",
       "prompt": "Beoordeel het begrippenkader tests/fixtures/imgeo-mini/imgeo-mini.ttl volgens NL-SBB. Doe alleen de basisreview, zonder optionele modules.",
       "expected_output": "Rapport zonder SHACL-sectie, waarin staat dat beide modules zijn overgeslagen, en dat de inhoudelijke fouten 3 tot en met 14 uit verwacht.md bevat.",
-      "files": ["tests/fixtures/imgeo-mini/imgeo-mini.ttl"],
+      "files": [
+        "tests/fixtures/imgeo-mini/imgeo-mini.ttl"
+      ],
       "expectations": [
         "Het rapport vermeldt dat de SHACL-validatie en de bronnencontrole niet zijn uitgevoerd",
         "Het rapport presenteert geen sh:Violation-aantallen alsof er gevalideerd is",
@@ -42,6 +46,24 @@
         "De termconventies (fout 5 tot en met 8 en 14) worden gemeld",
         "De tekstcoderingsfout en de circulaire definitie worden gemeld",
         "Het bronbestand is niet gewijzigd"
+      ]
+    },
+    {
+      "id": 4,
+      "naam": "imgeo-volledig",
+      "prompt": "Beoordeel het begrippenkader https://upload.begrippenxl.nl/storage/imgeo/imgeo.ttl volgens NL-SBB. Voer beide optionele modules uit (SHACL-validatie en bronnencontrole).",
+      "expected_output": "Rapport met 48 sh:Violation, 919 sh:Warning en 464 sh:Info (profiel 1.0.0 plus extensie), de 39 topbegrippen met een bovenliggend begrip als Fout, totaaloordeel 'Voldoet niet' en publicatieadvies 'nee'.",
+      "files": [],
+      "expectations": [
+        "De extensie wordt meegenomen; het rapport noemt 48 sh:Violation, 919 sh:Warning en 464 sh:Info",
+        "De 39 topbegrippen met een bovenliggend begrip (48 relaties) worden als Fout gemeld",
+        "Het rapport meldt dat alle 464 begrippen topbegrip zijn en het kader dus een platte lijst is",
+        "De 127 begrippen met een dubbele voorkeursterm worden gemeld",
+        "De 39 relaties naar 14 doelen die niet in het bestand staan worden gemeld, met beide aantallen juist",
+        "De 57 collecties zonder skos:prefLabel worden gemeld",
+        "De bronnencontrole meldt dat er geen dct:source is om te controleren, en behandelt namespace-hosts niet als bronnen",
+        "Het rapport vermeldt welke inhoudelijke controles uitputtend en welke op steekproef zijn gedaan",
+        "Het totaaloordeel is 'Voldoet niet aan NL-SBB' en het publicatieadvies is 'nee'"
       ]
     },
     {

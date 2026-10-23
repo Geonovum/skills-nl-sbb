@@ -14,6 +14,7 @@ assistenten, waarvan één open source of Europees. Deze map is die procedure.
 | --- | --- |
 | [`evals.json`](evals.json) | Testgevallen: prompt, invoerbestanden en verwachte bevindingen per geval. Het formaat (prompt, bestanden, verwachtingen) is het gangbare formaat voor evals van skills, zodat de tests met elke assistent opnieuw te draaien zijn |
 | [`ijkpunt.py`](ijkpunt.py) | Onafhankelijke SHACL-referentie, zonder assistent. Rapporten van de skill worden hiertegen gescoord |
+| Volledig IMGeo-kader | 464 begrippen, 6.102 triples; staat niet in de repository maar op [upload.begrippenxl.nl](https://upload.begrippenxl.nl/storage/imgeo/imgeo.ttl). Referentie: 48 sh:Violation, 919 sh:Warning, 464 sh:Info; zie [het verslag van 2026-09-03](verslagen/2026-09-03-mistral-imgeo-volledig.md#ijkpunt-voor-dit-kader) |
 | [`fixtures/imgeo-mini/`](fixtures/imgeo-mini/verwacht.md) | Regressiekader van 20 begrippen met 14 aangebrachte fouttypen, de gewenste uitkomst en de SHACL-referentie |
 | [`stresstest/stelselcatalogus.md`](stresstest/stelselcatalogus.md) | De volledige export van de stelselcatalogus (ruim 22 MB, circa 50 begrippenkaders) als stresstest: bron, controlegetal en referentie-uitkomst. Het bestand zelf staat niet in de repository |
 | [`verslagen/`](verslagen/) | Verslagen van testrondes, met datum, skillversie en de gebruikte assistent en het model. Alleen hier mogen namen van assistenten en modellen staan (zie CONTRIBUTING.md) |
@@ -68,9 +69,10 @@ uitputtend en welke op steekproef zijn gedaan.
 | Datum | Onderwerp | Assistenten | Verslag |
 | --- | --- | --- | --- |
 | 2026-08-28 | Portabiliteit van de skill en werking op lichtere modellen | 3 modellen van één aanbieder | [verslag](verslagen/2026-08-28-portabiliteit-en-lichte-modellen.md) |
+| 2026-09-03 | Volledig IMGeo-kader met SHACL-module en bronnencontrole | 1 Europees model | [verslag](verslagen/2026-09-03-mistral-imgeo-volledig.md) |
 | 2026-10-05 | Vergelijking met de Kwaliteitsregeltaal-validator via MCP | 1 model | [verslag](verslagen/2026-10-05-vergelijking-kwaliteitsregeltaal-mcp.md) |
 | 2026-10-07 | Stresstest met de export van de stelselcatalogus (zonder assistent) | – | [stresstest](stresstest/stelselcatalogus.md) |
 
-**Nog open:** een testronde met een open-source of Europese assistent, en met een lokaal
-draaiende assistent. Het verslag van 2026-08-28 onderzoekt alleen of de skill in andere
-omgevingen leesbaar is; de skill is daar niet in gedraaid.
+**Nog open:** een testronde met een open-source of Europese assistent die de acceptatiecriteria
+haalt, en een ronde met een lokaal draaiende assistent. De run van 2026-09-03 met een Europese
+assistent nam de extensie niet mee en mist daardoor de harde fouten; zie het verslag.
