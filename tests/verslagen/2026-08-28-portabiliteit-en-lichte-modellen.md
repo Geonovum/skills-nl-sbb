@@ -136,14 +136,18 @@ verschillende blinde vlekken, geen rangorde.
 - Een issue voor Imvertor over `Imvert2Skos-BRO.xsl`, dat superklasserelaties wegschrijft naar
   begrippen die niet worden geëxporteerd.
 - `conflicts.md` is gecorrigeerd: het beweerde op drie punten dat het profiel iets niet toetst,
-  terwijl de shapes wel bestaan.
+  terwijl de shapes wel bestaan. In de gepubliceerde versie 0.1.0 stond de oude tabel nog; de
+  correctie is opnieuw voorgesteld in [Geonovum/skills-nl-sbb#3](https://github.com/Geonovum/skills-nl-sbb/pull/3).
 
 ## Stand in de gepubliceerde skill
 
 Vergeleken met de gepubliceerde versie `geonovum-nl-sbb-review` (0.1.0):
 
 - De correctie van defect 1 staat erin, in een andere vorm: profiel en extensie worden als twee aparte runs gedraaid en de bevindingen opgeteld, in plaats van samengevoegd tot één shapes-graaf. Op IMGeo-mini geeft dat dezelfde uitkomst (profiel 10 sh:Warning; extensie 3 sh:Violation, 7 sh:Warning, 20 sh:Info; samen 3 / 17 / 20), getoetst op 2026-10-23.
-- **Het script `scripts/inhoudelijke-scan.py` en de instructie voor grote kaders (defect 2)
-  ontbreken.** De resultaten van R3 gelden dus niet voor de gepubliceerde versie.
+- **De correctie van defect 2 ontbreekt.** De instructie voor grote kaders is opnieuw voorgesteld in
+  [Geonovum/skills-nl-sbb#3](https://github.com/Geonovum/skills-nl-sbb/pull/3), zonder het scanscript:
+  voor het systematisch toetsen van alle termen en definities wordt een andere oplossing uitgewerkt.
+  De resultaten van R3, gemeten mét het script, gelden dus niet één-op-één voor de gepubliceerde
+  versie.
 - `allowed-tools` is teruggebracht tot `Bash(pyshacl *)`.
 - Het voorstel voor `compatibility` uit deze sessie is niet overgenomen.
