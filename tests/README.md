@@ -1,7 +1,8 @@
 # Tests
 
-Testmateriaal, referentie-uitkomsten en verslagen voor de skill `geonovum-nl-sbb-review`. Deze map
-gaat niet mee met de plugin: alleen `skills/` wordt geïnstalleerd.
+Testmateriaal, referentie-uitkomsten en verslagen voor de skill `geonovum-nl-sbb-review`. Een assistent
+laadt alleen wat in `skills/` staat; deze map hoort niet bij de instructies van de skill. Houd
+hem daarom klein: grote testbestanden horen niet in de repository (zie de stresstest).
 
 Een status boven `concept` vraagt volgens [CONTRIBUTING.md](../CONTRIBUTING.md#status-van-een-skill)
 een gepubliceerde reviewprocedure met acceptatiecriteria en een test met minstens twee
