@@ -1,0 +1,283 @@
+{
+ "data": "tests/fixtures/imgeo-mini/imgeo-mini.ttl",
+ "profiel": "https://register.geostandaarden.nl/shacl/nl-sbb/1.0.0/skos-ap-nl.ttl",
+ "triplesProfiel": 679,
+ "triplesProfielPlusExtensie": 748,
+ "instellingen": {
+  "advanced": true,
+  "inference": "rdfs",
+  "allow_warnings": false
+ },
+ "telling": {
+  "fout": 3,
+  "waarschuwing": 17,
+  "info": 20
+ },
+ "extensieShapesGeraakt": [
+  "DuplicateDefinitionWithinSchemeShape",
+  "MissingSourceShape-source",
+  "OrphanConceptShape",
+  "TopConceptWithBroaderShape"
+ ],
+ "resultaten": [
+  {
+   "ernst": "fout",
+   "shape": "TopConceptWithBroaderShape",
+   "pad": "broaderGeneric",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Bak",
+   "aantal": 1
+  },
+  {
+   "ernst": "fout",
+   "shape": "TopConceptWithBroaderShape",
+   "pad": "broaderGeneric",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Begroeidterreindeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "fout",
+   "shape": "TopConceptWithBroaderShape",
+   "pad": "broaderGeneric",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Mast",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Bak",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Begroeidterreindeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Buurt",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Duiker",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Goot",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Greppel",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Inrichtingselement",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Kolk",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Mast",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Molgoot",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtTerrein",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtWater",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtWegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Overigbouwwerk",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Paal",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_terrein",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_wegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Put",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Verhardenwegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "info",
+   "shape": "MissingSourceShape-source",
+   "pad": "source",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Watervlakte",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Collection-label",
+   "pad": "prefLabel",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/waardelijst/Functiewegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Molgoot",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Paal",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_terrein",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_wegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept-UniquePrefLabelWithinSchemeShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_terrein",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept-UniquePrefLabelWithinSchemeShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Plustype_wegdeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept-broaderGeneric",
+   "pad": "broaderGeneric",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Bak",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "Concept-broaderGeneric",
+   "pad": "broaderGeneric",
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Begroeidterreindeel",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "ConceptScheme-label",
+   "pad": "title",
+   "focus": "http://definities.geostandaarden.nl/imgeomini",
+   "aantal": 1
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "DuplicateDefinitionWithinSchemeShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtTerrein",
+   "aantal": 2
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "DuplicateDefinitionWithinSchemeShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtWater",
+   "aantal": 2
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "DuplicateDefinitionWithinSchemeShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/NietBgtWegdeel",
+   "aantal": 2
+  },
+  {
+   "ernst": "waarschuwing",
+   "shape": "OrphanConceptShape",
+   "pad": null,
+   "focus": "http://definities.geostandaarden.nl/imgeomini/id/begrip/Paal",
+   "aantal": 1
+  }
+ ]
+}

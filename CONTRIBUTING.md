@@ -47,7 +47,7 @@ Wil je code bijdragen? Volg dan onderstaand proces.
 - **Branch en pull request.** Wijzigingen gaan via een branch en een pull request met een review. Op `main` commit je niet rechtstreeks.
 - **Changeset per wijziging.** Elke pull request die een skill of de repo-opzet wijzigt, voegt met `npx changeset` een changeset toe: `patch` voor een correctie, `minor` voor nieuwe functionaliteit of een nieuwe standaardversie, `major` voor een andere rapportstructuur of ander standaardgedrag. De releaseworkflow bundelt open changesets in een versie-PR; bij merge daarvan volgen tag en GitHub-release. Zie `.changeset/README.md`.
 - **Eén bron, gegenereerde afgeleiden.** `.plugin/plugin.json` is het enige manifest dat je bewerkt. De manifesten in de mappen per assistent genereer je met `python3 scripts/generate_plugin.py`; `npm run check` faalt als ze afwijken. Bewerk ze nooit met de hand.
-- **Geen productnamen.** Buiten de gegenereerde manifestmappen (de verborgen mappen met de naam van een assistent) komt geen naam van een AI-assistent of model voor, ook niet in de skilltekst of in `allowed-tools`. Beschrijf een handeling, niet het product. De enige uitzondering is `scripts/generate_plugin.py`, dat de mappen per assistent bij naam moet noemen om ze te kunnen schrijven.
+- **Geen productnamen.** Buiten de gegenereerde manifestmappen (de verborgen mappen met de naam van een assistent) komt geen naam van een AI-assistent of model voor, ook niet in de skilltekst of in `allowed-tools`. Beschrijf een handeling, niet het product. Er zijn twee uitzonderingen: `scripts/generate_plugin.py`, dat de mappen per assistent bij naam moet noemen om ze te kunnen schrijven, en de testverslagen in `tests/verslagen/`, die juist moeten vastleggen met welke assistent, welk model en welke versie getest is. Zonder die namen is een test niet na te gaan of te herhalen.
 
 ### Een skill wijzigen
 
@@ -60,7 +60,7 @@ Wil je code bijdragen? Volg dan onderstaand proces.
 
 ### Status van een skill
 
-`nl.gov.status` is een van `concept`, `development`, `beta`, `stable` of `obsolete`. Een status boven `concept` vraagt een expertreview van de inhoud en van wat de skill aanroept, een gepubliceerde reviewprocedure met acceptatiecriteria, en een test met minstens twee assistenten waarvan één open source of Europees. De vaststelling als `stable` doet de werkgroep NL-SBB; dan wordt ook `nl.gov.approved-by` ingevuld.
+`nl.gov.status` is een van `concept`, `development`, `beta`, `stable` of `obsolete`. Een status boven `concept` vraagt een expertreview van de inhoud en van wat de skill aanroept, een gepubliceerde reviewprocedure met acceptatiecriteria, en een test met minstens twee assistenten waarvan één open source of Europees. De procedure, de acceptatiecriteria en de verslagen staan in [`tests/`](tests/README.md). De vaststelling als `stable` doet de werkgroep NL-SBB; dan wordt ook `nl.gov.approved-by` ingevuld.
 
 ### Lokaal controleren
 
@@ -72,6 +72,15 @@ npm run check
 ```
 
 Dat controleert of de manifesten per assistent gelijk zijn aan wat `.plugin/plugin.json` oplevert en of de versie in `package.json`, `.plugin/plugin.json` en `publiccode.yml` gelijk is.
+
+### Een skill testen
+
+Wijzig je de werkwijze van een skill, draai dan het ijkpunt en minstens het regressiekader
+IMGeo-mini opnieuw, en leg de uitkomst vast in `tests/verslagen/`. Zie [`tests/README.md`](tests/README.md).
+
+```bash
+python3 tests/ijkpunt.py tests/fixtures/imgeo-mini/imgeo-mini.ttl
+```
 
 ## Licentie
 

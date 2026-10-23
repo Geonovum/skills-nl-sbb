@@ -35,6 +35,10 @@ Vraag je assistent een begrippenkader te beoordelen volgens NL-SBB en geef het b
 
 Regels die de skill wel toetst maar het profiel niet, staan met de reden in [`conflicts.md`](skills/geonovum-nl-sbb-review/conflicts.md) en als SHACL-extensie in [`skos-ap-nl-extensie.ttl`](skills/geonovum-nl-sbb-review/skos-ap-nl-extensie.ttl). Die extensie is een hulpmiddel van de skill, geen onderdeel van het normatieve profiel.
 
+## Tests
+
+De testprocedure, de acceptatiecriteria, het regressiekader IMGeo-mini met de gewenste uitkomst, een stresstest met de export van de stelselcatalogus en de verslagen van testrondes staan in [`tests/`](tests/README.md).
+
 ## Bijdragen
 
 Fouten in een skill meld je als [issue](https://github.com/Geonovum/skills-nl-sbb/issues). Fouten in de standaard zelf horen in [Geonovum/NL-SBB](https://github.com/Geonovum/NL-SBB/issues). Werkafspraken voor wijzigingen staan in [CONTRIBUTING.md](CONTRIBUTING.md).
