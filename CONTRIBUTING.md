@@ -52,7 +52,7 @@ Wil je code bijdragen? Volg dan onderstaand proces.
 ### Een skill wijzigen
 
 - De map heet gelijk aan `name` in de frontmatter en begint met de slug `geonovum-`.
-- De frontmatter bevat `name`, `description`, `license` en in `metadata` de `nl.gov.`-sleutels. Datums schrijf je als JJJJ-MM-DD; een sleutel zonder waarde laat je weg.
+- De frontmatter bevat `name`, `description`, `license` en in `metadata` de `nl.gov.`-sleutels. `nl.gov.version` bewerk je niet met de hand: die zet `npm run version` gelijk aan de versie in `package.json`. Datums schrijf je als JJJJ-MM-DD; een sleutel zonder waarde laat je weg.
 - Een gepubliceerde skillnaam wijzigt niet meer. Moet het toch, zet dan de oude naam in `nl.gov.previous-name`.
 - Een skill is een samenvatting, niet de standaard zelf. Waar de skill afwijkt van of strenger is dan het normatieve SHACL-profiel, leg je dat met de reden vast in `conflicts.md` van die skill.
 - `SKILL.md` blijft onder de 500 regels; achtergrond hoort in `reference.md`.
@@ -71,7 +71,7 @@ npm ci
 npm run check
 ```
 
-Dat controleert of de manifesten per assistent gelijk zijn aan wat `.plugin/plugin.json` oplevert en of de versie in `package.json`, `.plugin/plugin.json` en `publiccode.yml` gelijk is.
+Dat controleert of de manifesten per assistent gelijk zijn aan wat `.plugin/plugin.json` oplevert en of de versie in `package.json`, `.plugin/plugin.json`, `publiccode.yml` en `nl.gov.version` van elke skill gelijk is.
 
 ## Licentie
 

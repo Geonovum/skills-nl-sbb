@@ -30,16 +30,20 @@ Baseer de statusbepaling op beide bronnen (URI én tekst) en meld waarop de conc
 
 ## SHACL-profiel dekt niet alle regels
 
-Het normatieve profiel meldt sommige NL-SBB-regels niet, of met een andere ernst dan de tekst van de standaard suggereert. Bekend:
+Het normatieve profiel meldt sommige NL-SBB-regels niet, gedeeltelijk, of met een andere ernst dan de tekst van de standaard suggereert. Geverifieerd tegen het profiel 1.0.0 met pySHACL 0.40.1 op 2026-10-23:
 
-| Regel | Standaard/skill | SHACL-profiel v1.0.0 |
-|---|---|---|
-| Topbegrip met bovenliggend begrip via `isothes:broaderGeneric` | Fout | Niet getoetst |
-| Semantische/hiërarchische relatie naar niet-begrip | Fout (skill) | `sh:Warning` |
-| Harmonisatierelatie binnen hetzelfde kader | Fout | Niet getoetst |
-| Dubbele `skos:notation` binnen één kader | Fout | Niet expliciet getoetst |
-| Verweesd begrip | Waarschuwing | Niet getoetst |
-| Identieke definities bij meerdere begrippen | Waarschuwing | Niet getoetst |
+| Regel | Standaard/skill | SHACL-profiel v1.0.0 | Extensie |
+|---|---|---|---|
+| Topbegrip met bovenliggend begrip | Fout | Getoetst (`TopConceptHavingBroader`), maar **alleen via `skos:broader`**, en als `sh:Warning` | `TopConceptWithBroaderShape`, ook via `isothes:broader*`, `sh:Violation` |
+| Semantische/hiërarchische relatie naar niet-begrip | Fout (skill) | `sh:Warning` | – |
+| Harmonisatierelatie binnen hetzelfde kader | Fout | Getoetst (`MappingRelationsMisuse`) | `MappingWithinSameSchemeShape` |
+| Dubbele `skos:notation` binnen één kader | Fout | Getoetst (`UnambiguousNotations`), als `sh:Warning` | `DuplicateNotationWithinSchemeShape`, `sh:Violation` |
+| Verweesd begrip | Waarschuwing | Getoetst (`OrphanConcept`), maar **alleen via SKOS-relaties**: een begrip dat alleen via `isothes:`-relaties in de hiërarchie hangt, wordt ten onrechte gemeld | `OrphanConceptShape`, telt ISO 25964-relaties mee |
+| Identieke definities bij meerdere begrippen | Waarschuwing | Niet getoetst | `DuplicateDefinitionWithinSchemeShape` |
+
+**Ernst.** `TopConceptHavingBroader` en `UnambiguousNotations` declareren `sh:Violation`, maar hangen aan de node shape `skosapnl:Concept`, die `sh:Warning` heeft. pySHACL rapporteert ze daardoor als `sh:Warning`. Zonder de extensie geeft het profiel op deze regels dus nooit een harde fout.
+
+**Vals positief.** Meldt het profiel een begrip als "geen topbegrip maar heeft ook geen bovenliggende of gerelateerde begrippen" terwijl het een `isothes:`-relatie heeft, dan is dat een beperking van het profiel en geen fout in het kader. Zie "SHACL-validatie uitvoeren" in [`SKILL.md`](SKILL.md).
 
 Hiervoor levert de skill de extensie [`skos-ap-nl-extensie.ttl`](skos-ap-nl-extensie.ttl). **Bij een discrepantie tussen de ernst uit het SHACL-profiel en die uit de standaardtekst is de standaardtekst leidend**; rapporteer beide en licht de keuze toe.
 
