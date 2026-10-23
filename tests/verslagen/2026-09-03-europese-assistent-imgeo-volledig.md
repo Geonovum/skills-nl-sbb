@@ -57,7 +57,9 @@ staan; geen enkel begrip heeft `dct:source`.
    [verslag van 2026-08-28](2026-08-28-portabiliteit-en-lichte-modellen.md), met een andere oorzaak:
    de omgeving gaf geen toegang tot de bestanden naast `SKILL.md`, of de assistent heeft ze niet
    gezocht. De zelfcontrole uit de skill (er moet minstens één shape uit de extensie in de
-   resultaten staan) had dit moeten tegenhouden.
+   resultaten staan) had dit moeten tegenhouden. Bij de run van
+   [2026-10-23](2026-10-23-europese-assistent-imgeo-mini.md) bleek dat de extensie niet in de
+   skill-assets van de workspace-registry zat.
 2. **De SHACL-uitkomst is verkeerd samengevat.** De telling klopt, maar de toelichting schrijft
    alle 351 waarschuwingen toe aan één oorzaak. Daardoor missen de 127 dubbele voorkeurstermen in
    het rapport, terwijl ze in de ruwe uitvoer stonden.
