@@ -5,7 +5,7 @@ Tweede testrun met een Europese assistent, nu op het regressiekader. Gescoord te
 
 | | |
 | --- | --- |
-| Assistent | Mistral, met de skill uit een workspace-registry via de Mistral-MCP, Python en internettoegang *(omgeving en modelversie nog aan te vullen)* |
+| Assistent | Mistral Vibe (chat.mistral.ai/code) met Mistral Large 4.0 (voorvertoning). De skill kwam uit de workspace-registry van Mistral Vibe, via de Mistral-MCP; Python en internettoegang beschikbaar |
 | Skillversie | `validatie-nl-sbb` uit de workspace-registry, met `scan.py` en losse moduledocumenten voor SHACL en bronnencontrole. **De extensie `skos-ap-nl-extensie.ttl` zat niet in de skill-assets**; de assistent haalde hem zelf op uit Geonovum/skills-nl-sbb |
 | Testkader | `tests/fixtures/imgeo-mini/imgeo-mini.ttl`, geüpload als `.txt` |
 | Verloop | Twee prompts: (1) "kan je met de geonovum-nl-sbb skill dit begrippenkader valideren?", waarop de basisreview draaide; (2) "allebei graag", na het aanbod van de SHACL-module en de bronnencontrole |
