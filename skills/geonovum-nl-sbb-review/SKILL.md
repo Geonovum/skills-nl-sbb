@@ -91,7 +91,17 @@ Voer de review altijd in deze volgorde uit.
 
 **Stap 3 — Basiscontrole en optionele modules.** Controleer verplichte eigenschappen, termen, definities, relaties, topbegrippen, verweesde begrippen en codes (detailregels in [`reference.md`](reference.md)). Twee onderdelen zijn **optionele modules** die je alleen uitvoert nadat de gebruiker ze heeft gekozen (zie "Optionele modules" hieronder): de **SHACL-validatie** en de **bronnencontrole**.
 
-**Stap 4 — Inhoudelijke review.** Beoordeel begrijpelijkheid, consistentie, begripsafbakening, relatiekwaliteit, bronkwaliteit, **termconventies (Best Practice 1: zelfstandig naamwoord, enkelvoud, kleine letters, geen werkwoorden/afkortingen/leestekens — zie [`reference.md`](reference.md))** en publicatiekwaliteit. Deze punten toetst SHACL niet; benoem ze als waarschuwing, aanbeveling of informatief. Toets termconventies ook absoluut per term, niet alleen op onderlinge consistentie: een consequent doorgevoerde afwijking valt anders niet op.
+**Stap 4 — Inhoudelijke review.** Beoordeel begrijpelijkheid, consistentie, begripsafbakening, relatiekwaliteit, bronkwaliteit, **termconventies (Best Practice 1: zelfstandig naamwoord, enkelvoud, kleine letters, geen werkwoorden/afkortingen/leestekens — zie [`reference.md`](reference.md))** en publicatiekwaliteit. Deze punten toetst SHACL niet; benoem ze als waarschuwing, aanbeveling of informatief. Toets termconventies ook absoluut per term, niet alleen op onderlinge consistentie: een consequent doorgevoerde afwijking valt anders niet op. Bij grote kaders: zie "Volledige dekking bij grote begrippenkaders".
+
+## Volledige dekking bij grote begrippenkaders
+
+**Beoordeel termen en definities niet door het bestand lezend te doorlopen.** Bij een kader van enige omvang leidt dat tot steekproeven, en dan blijven bevindingen liggen die over het hele kader verspreid zitten: één term met een komma tussen honderden correcte termen, een handvol definities met een tekstcoderingsfout, een ontbrekende `dct:title`. In tests op een kader van 464 begrippen bleven op die manier vier van de zeven inhoudelijke controles onopgemerkt, bij elk geteste model, terwijl dezelfde controles op een kader van 20 begrippen wél allemaal werden gevonden. Het verschil zat in de omvang van het bestand, niet in de moeilijkheid van de bevindingen.
+
+**Werkwijze vanaf ongeveer 50 begrippen** (en bij twijfel altijd): toets de telbare controles systematisch over álle begrippen, bijvoorbeeld met een query of een eigen telling over het bestand, en gebruik die uitkomst als basis voor de inhoudelijke review. Telbaar zijn onder meer: ontbrekende verplichte eigenschappen en `dct:source`; termen met een hoofdletter, CamelCase, leestekens of afkortingen, en mogelijke meervoudsvormen; identieke definities; definities die hun eigen term bevatten; tekstcoderingsfouten en stuurtekens; zeer korte definities; per kader `dct:title` en het aantal topbegrippen; per collectie `skos:prefLabel` en `skos:member`; begrippen zonder semantische relatie; relatiedoelen die niet in het bestand voorkomen. Neem de aantallen over in het rapport en noem per categorie enkele voorbeelden.
+
+**Platte lijst.** Is vrijwel elk begrip topbegrip, meld dat dan altijd als waarschuwing: het kader is een platte lijst zonder hiërarchie, en de controle op verweesde begrippen wordt betekenisloos, omdat een topbegrip per definitie niet verweesd is. SHACL signaleert dat patroon niet.
+
+**Wat niet te tellen is.** Vaagheid, begripsafbakening, of een definitie het begrip werkelijk beschrijft, of een relatie inhoudelijk klopt, en of een gesignaleerde meervoudsvorm of mogelijk circulaire definitie echt een probleem is: dat blijft oordeelswerk. Doe dat op de gesignaleerde gevallen plus een bewuste steekproef uit de rest, en **vermeld in het rapport welke controles uitputtend zijn gedaan en welke op steekproef**. Presenteer een steekproefbevinding nooit als een volledige telling.
 
 ## Optionele modules
 
@@ -251,7 +261,7 @@ Leg uit waarom het kader wel/grotendeels/gedeeltelijk/niet voldoet.
 Alleen betrouwbare aantallen en observaties.
 
 ## 7. Gecontroleerde NL-SBB-aspecten
-Wat wel en niet gecontroleerd kon worden (incl. profielbron/-versie, de gebruikte validatie-instellingen — `advanced=True`, `inference=rdfs` — en de pySHACL-versie indien bekend). Vermeld welke optionele modules zijn uitgevoerd en welke zijn overgeslagen.
+Wat wel en niet gecontroleerd kon worden (incl. profielbron/-versie, de gebruikte validatie-instellingen — `advanced=True`, `inference=rdfs` — en de pySHACL-versie indien bekend). Vermeld welke optionele modules zijn uitgevoerd en welke zijn overgeslagen. Vermeld welke inhoudelijke controles uitputtend en welke op steekproef zijn gedaan.
 
 ## 8. Publicatieadvies
 - Geschikt voor publicatie: ja/nee/onder voorwaarden
