@@ -5,6 +5,7 @@ license: EUPL-1.2
 allowed-tools: "Bash(pyshacl *)"
 metadata:
   nl.gov.status: concept
+  nl.gov.version: "0.1.0"
   nl.gov.review-by: "2027-04-14"
   nl.gov.source: https://docs.geostandaarden.nl/nl-sbb/def-st-nl-sbb-20241010/
   nl.gov.source-license: CC-BY-4.0
@@ -45,6 +46,8 @@ De beoordeling is gebaseerd op het NL-SBB SKOS-profiel, het normatieve **SHACL-p
 ```
 https://register.geostandaarden.nl/shacl/nl-sbb/1.0.0/skos-ap-nl.ttl
 ```
+
+**Versie van de skill.** Deze skill heet `geonovum-nl-sbb-review`; de versie staat in `nl.gov.version` in de frontmatter. Vermeld naam en versie in het rapport. Heet de geladen skill `validatie-nl-sbb` of `nl-sbb`, of ontbreekt `nl.gov.version`, dan is het een verouderde versie: meld dat aan de gebruiker en gebruik bij voorkeur de actuele versie uit [Geonovum/skills-nl-sbb](https://github.com/Geonovum/skills-nl-sbb). Combineer geen bestanden uit verschillende versies.
 
 Haal dit profiel altijd als eerste op. Alleen als het register onbereikbaar is, gebruik dan de fallback `https://raw.githubusercontent.com/Geonovum/NL-SBB/2c13502f370086476cd56d6c09ef76d5d918b343/shacl/1.0.0/skos-ap-nl.ttl` en controleer dat `owl:versionInfo` in het bestand `1.0.0` is. Meld in het rapport welke profielbron en -versie is gebruikt.
 
@@ -164,6 +167,12 @@ Het SHACL-profiel dekt niet alle NL-SBB-regels. De volgende regels controleert d
 
 Draai profiel en extensie als twee shapes-graphs, elk met `pyshacl -s <shapes> --advanced --inference rdfs data.ttl`, en tel de bevindingen van beide runs samen. Laad de extensie niet met `-e`: die vlag is in pySHACL de ontologiegraaf en evalueert geen shapes. De `--advanced`-vlag is nodig om de SPARQL-constraints van de extensie te evalueren. Gebruik géén `--allow-warnings`/`--allow-infos` (zie de waarschuwing hierboven over het misleidende `conforms`-veld).
 
+**De extensie moet meedoen.** Zoek `skos-ap-nl-extensie.ttl` naast deze `SKILL.md`. Ontbreekt het bestand, bijvoorbeeld omdat de skill gedeeltelijk is geladen of uit verschillende versies is samengesteld, haal het dan op uit de repository bij de versie van deze skill, `https://raw.githubusercontent.com/Geonovum/skills-nl-sbb/v<nl.gov.version>/skills/geonovum-nl-sbb-review/skos-ap-nl-extensie.ttl`, en meld dat in het rapport. Lukt ook dat niet, voer dan alleen de profielrun uit, noem de SHACL-validatie in het rapport **onvolledig**, en concludeer niet dat er geen harde fouten zijn: de regel voor topbegrippen met een bovenliggend begrip via `isothes:broader*` zit alleen in de extensie.
+
+**Tel uit de ruwe uitvoer.** Haal de aantallen per ernstniveau én per shape (`Source Shape`) uit de ruwe resultaten, niet uit een eigen samenvatting, en schrijf een groep meldingen niet aan één oorzaak toe zonder die te tellen. Zeg bij elk aantal wat er geteld is: resultaten, begrippen (focus nodes), relaties en unieke relatiedoelen zijn verschillende tellingen. 39 relaties naar 14 doelen zijn niet "14 relaties". Een regel die per paar meldt, zoals die voor identieke definities, geeft twee resultaten per paar.
+
+**Bekend vals positief van het profiel.** Het profiel 1.0.0 meldt een begrip als "geen topbegrip maar heeft ook geen bovenliggende of gerelateerde begrippen" als het alleen via ISO 25964-relaties (`isothes:broaderGeneric`, `isothes:narrowerPartitive` enzovoort) in de hiërarchie hangt: het profiel kijkt alleen naar `skos:broader`, `skos:narrower` en `skos:related`. Controleer zo'n melding in de data. Heeft het begrip een in- of uitgaande `isothes:`-relatie, rapporteer het dan niet als verweesd en adviseer geen relatie toe te voegen die er al is; noem de melding als beperking van het profiel. De extensie (`OrphanConceptShape`) telt ISO 25964-relaties wel mee.
+
 ## Bronnencontrole uitvoeren
 
 > Dit is een **optionele module** (zie "Optionele modules"). Voer haar alleen uit als de gebruiker daarvoor heeft gekozen.
@@ -172,7 +181,7 @@ Deze module doet bewust **twee beperkte dingen** en niet meer: (1) controleren o
 
 **Werkwijze:**
 
-1. **Verzamel de bronnen.** Haal alle bron-URI's/URL's uit het kader (o.a. `dct:source`, en waar relevant de begrip- en kader-URI's zelf).
+1. **Verzamel de bronnen.** Bronnen zijn de waarden van `dct:source`, en daarbinnen de URL (`foaf:page`) of verwijzing van een brondocument. Heeft het kader geen enkele `dct:source`, meld dan "geen bronnen om te controleren" en sluit de module af; het ontbreken van bronnen is zelf al een bevinding. Namespace-URI's (zoals `www.w3.org`) en de URI's van de begrippen en het kader zelf zijn geen bronnen: stel die nooit voor de bronnenlijst voor. Vraagt de gebruiker of de begrip-URI's resolveren, rapporteer dat dan apart als "bereikbaarheid van URI's".
 2. **Toets tegen de bronnenlijst.** Vergelijk de host van elke bron met de hosts in [`bronnenlijst.md`](bronnenlijst.md). Staat de host erop → informatief ("bekende bron"). Staat de host er niet op → **waarschuwing** ("onbekende bron; niet op de bekende bronnenlijst"), geen fout.
 3. **Controleer bereikbaarheid** met een lichte HTTP-check, bijv.:
    ```bash
@@ -197,7 +206,7 @@ Rapporteer de bevindingen van deze module in een aparte sectie (zie de optionele
 ## Ernstniveaus (samengevat)
 
 - **Fout** — een harde NL-SBB-regel wordt geschonden of publicatie als NL-SBB-conform is niet verantwoord (bijv. begrip zonder definitie of zonder `inScheme`, dubbele code, topbegrip met bovenliggend begrip, harmonisatierelatie binnen hetzelfde kader, semantische relatie naar iets dat geen begrip is).
-- **Waarschuwing** — bruikbaar, maar met risico voor consistentie, interpretatie, beheer of publicatie (bijv. dubbele voorkeursterm, ontbrekende bron, vage definitie, twijfelachtig `skos:related`).
+- **Waarschuwing** — bruikbaar, maar met risico voor consistentie, interpretatie, beheer of publicatie (bijv. dubbele voorkeursterm, ontbrekende bron, vage definitie, twijfelachtig `skos:related`, collectie zonder `skos:prefLabel`, begrippenkader zonder `dct:title`, tekstcoderingsfout of stuurteken in een definitie).
 - **Aanbeveling** — niet blokkerend, verbetert kwaliteit of beheerbaarheid.
 - **Informatief** — context zonder directe actie (aantallen, gebruikte talen, relatietypen). Noem alleen aantallen die betrouwbaar uit de bron zijn afgeleid.
 
@@ -223,7 +232,8 @@ Geef altijd een uitgebreid rapport in de taal van de gebruiker, met deze secties
 ## 1. Samenvatting
 Bron / Type invoer / Beoordeling / Aantal fouten / Aantal waarschuwingen /
 Aantal aanbevelingen / Aantal informatieve bevindingen /
-Gebruikte NL-SBB-versie + status (standaard 1.0.0) en profielbron / Korte conclusie
+Gebruikte NL-SBB-versie + status (standaard 1.0.0) en profielbron /
+Skill + versie (geonovum-nl-sbb-review, nl.gov.version) / Korte conclusie
 
 ## 2. Totaaloordeel
 Leg uit waarom het kader wel/grotendeels/gedeeltelijk/niet voldoet.
@@ -253,7 +263,9 @@ Wat wel en niet gecontroleerd kon worden (incl. profielbron/-versie, de gebruikt
 ```text
 ## SHACL-validatie (optionele module)
 - Profielbron + versie / validatie-instellingen (advanced, inference) / pySHACL-versie
+- Extensie meegenomen: ja / opgehaald uit de repository / nee (dan: SHACL-validatie onvolledig)
 - Aantal sh:Violation / sh:Warning / sh:Info (op basis van de telling per ernstniveau, niet het conforms-veld)
+- Aantal per shape, uit de ruwe uitvoer
 | Shape | Severity | Focus node | Kernboodschap |
 
 ## Bronnencontrole (optionele module)
@@ -270,7 +282,7 @@ Professioneel en toetsend; concreet en controleerbaar; onderscheid tussen fouten
 
 ## Minimale kwaliteitscriteria
 
-Een review is pas compleet als is gerapporteerd: welke bron is beoordeeld; of die volledig toegankelijk was; **tegen welke NL-SBB-versie en profielbron is gevalideerd (standaard 1.0.0; bij een andere versie ook de status DEF/VV/CV en de bevestiging van de gebruiker)**; met welke validatie-instellingen (`advanced=True`, `inference=rdfs`) en of de extensie is meegenomen; het totaaloordeel; het aantal fouten, waarschuwingen en aanbevelingen; welke NL-SBB-aspecten zijn gecontroleerd; of publicatie wordt aanbevolen; en welke beperkingen gelden. Vul het rapport aan als een onderdeel ontbreekt.
+Een review is pas compleet als is gerapporteerd: welke skill en versie is gebruikt; welke bron is beoordeeld; of die volledig toegankelijk was; **tegen welke NL-SBB-versie en profielbron is gevalideerd (standaard 1.0.0; bij een andere versie ook de status DEF/VV/CV en de bevestiging van de gebruiker)**; met welke validatie-instellingen (`advanced=True`, `inference=rdfs`) en of de extensie is meegenomen; het totaaloordeel; het aantal fouten, waarschuwingen en aanbevelingen; welke NL-SBB-aspecten zijn gecontroleerd; of publicatie wordt aanbevolen; en welke beperkingen gelden. Vul het rapport aan als een onderdeel ontbreekt.
 
 ## Gerelateerde bronnen
 

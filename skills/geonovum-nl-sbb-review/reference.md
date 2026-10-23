@@ -21,11 +21,11 @@ Rapporteer per bevinding de URI, de ontbrekende eigenschap, de ernst, de NL-SBB-
 
 ### Begrippenkader (`skos:ConceptScheme`)
 
-Controleer of het kader is gemodelleerd als `skos:ConceptScheme`, een URI/identificatie heeft, een titel of label heeft, topbegrippen heeft via `skos:hasTopConcept` of `skos:topConceptOf`, en vanuit begrippen wordt gebruikt via `skos:inScheme`.
+Controleer of het kader is gemodelleerd als `skos:ConceptScheme`, een URI/identificatie heeft, een titel of label heeft, topbegrippen heeft via `skos:hasTopConcept` of `skos:topConceptOf`, en vanuit begrippen wordt gebruikt via `skos:inScheme`. Een kader zonder `dct:title` is een **waarschuwing** (het profiel meldt `sh:Warning`); een nietszeggende titel, zoals alleen "Model", ook.
 
 ### Collecties (`skos:Collection`)
 
-Controleer of collecties zijn gemodelleerd als `skos:Collection`, een label hebben, leden bevatten via `skos:member`, en niet worden verward met begrippen of begrippenkaders. Signaleer onterechte combinatie van rollen als fout.
+Controleer of collecties zijn gemodelleerd als `skos:Collection`, een label hebben, leden bevatten via `skos:member`, en niet worden verward met begrippen of begrippenkaders. Een collectie zonder `skos:prefLabel` is een **waarschuwing** (het profiel meldt `sh:Warning`), ook als er wel een `rdfs:label` is. Signaleer onterechte combinatie van rollen als fout.
 
 ## Labels en termen
 
@@ -65,6 +65,8 @@ Controleer per `skos:definition`: is de definitie aanwezig, beschrijft ze het be
 Definitietypen (beoordeel waar mogelijk): (1) typering / genus-differentia, (2) samenstelling / geheel-deel, (3) onderdeel, (4) relatie, (5) kenmerk.
 
 Onderscheid tussen: `skos:definition` (precieze betekenis), `rdfs:comment` (eenvoudige uitleg), `skos:scopeNote` (gebruik, grens, reikwijdte), `skos:example` (voorbeelden). Signaleer als waarschuwing wanneer uitleg, voorbeelden of toelichtingen de definitie vervangen of tegenspreken.
+
+Een tekstcoderingsfout (mojibake, zoals `Ã©` voor `é`) of een stuurteken in een definitie is een **waarschuwing**: geen harde NL-SBB-regel, wel herstellen vóór publicatie. Meld hem niet als fout.
 
 ## Bronnen
 
