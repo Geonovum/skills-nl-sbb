@@ -5,8 +5,8 @@ Tweede testrun met een Europese assistent, nu op het regressiekader. Gescoord te
 
 | | |
 | --- | --- |
-| Assistent | Mistral Vibe (chat.mistral.ai/code) met Mistral Large 4.0 (voorvertoning). De skill kwam uit de workspace-registry van Mistral Vibe, via de Mistral-MCP; Python en internettoegang beschikbaar |
-| Skillversie | `validatie-nl-sbb` uit de workspace-registry, met `scan.py` en losse moduledocumenten voor SHACL en bronnencontrole. **De extensie `skos-ap-nl-extensie.ttl` zat niet in de skill-assets**; de assistent haalde hem zelf op uit Geonovum/skills-nl-sbb |
+| Assistent | Mistral Vibe (chat.mistral.ai/code) met Mistral Large 4.0 (voorvertoning); Python en internettoegang beschikbaar |
+| Skillversie | **Geen gepubliceerde versie.** Gevraagd om met een skills-marketplace te verbinden, vond de assistent zelf de marketplace van developer.overheid.nl en zette in de eigen workspace-registry een skill `validatie-nl-sbb` samen uit die marketplace en oudere versies van de skill die hij al had. Die mengvorm had `scan.py` en losse moduledocumenten voor SHACL en bronnencontrole, maar **niet de extensie `skos-ap-nl-extensie.ttl`**; de assistent haalde die tijdens de run op uit Geonovum/skills-nl-sbb |
 | Testkader | `tests/fixtures/imgeo-mini/imgeo-mini.ttl`, geüpload als `.txt` |
 | Verloop | Twee prompts: (1) "kan je met de geonovum-nl-sbb skill dit begrippenkader valideren?", waarop de basisreview draaide; (2) "allebei graag", na het aanbod van de SHACL-module en de bronnencontrole |
 
@@ -62,7 +62,8 @@ harde NL-SBB-regel. Fout 13 is te licht gewogen: het profiel geeft hier een sh:W
 4. **De extensie ontbrak in de skill.** De assistent merkte dat zelf op en haalde het bestand op uit
    de repository. Dat verklaart waarschijnlijk ook de misser van
    [2026-09-03](2026-09-03-europese-assistent-imgeo-volledig.md), waar de extensie "niet beschikbaar"
-   was. De oorzaak zit in de verpakking van de skill voor de workspace-registry, niet in het model.
+   was. De oorzaak ligt niet in het model en ook niet in de gepubliceerde skill, maar in de manier
+   waarop de assistent de skill zelf samenstelde uit verschillende versies.
 5. **Gereedschap aangepast.** De assistent schreef `scan.py` naar een tijdelijke map en verbeterde
    daar "een tikfout in een melding". Het bronbestand bleef ongewijzigd, maar een aangepast script
    maakt de run minder goed herhaalbaar.
@@ -85,14 +86,26 @@ harde NL-SBB-regel. Fout 13 is te licht gewogen: het profiel geeft hier een sh:W
 | Telfouten | 1 (14 relaties i.p.v. 39) | 1 (13 extensieresultaten i.p.v. 30) |
 | Bronnencontrole | Verkeerd opgevat | Goed opgevat |
 
-Het verschil in omvang (464 tegen 20 begrippen) maakt de twee runs niet direct vergelijkbaar.
-Een run op het volledige IMGeo-kader mét extensie staat nog open.
+Het verschil in omvang (464 tegen 20 begrippen) maakt de twee runs niet direct vergelijkbaar,
+en beide runs gebruikten een andere, door de assistent samengestelde skillversie. Een run met de
+gepubliceerde skill, en een run op het volledige IMGeo-kader mét extensie, staan nog open.
+
+## Wat deze run wel en niet zegt
+
+De run zegt iets over het model: het vond alle aangebrachte fouten en telde de SHACL-uitkomst
+correct, maar verzon één oorzaak en maakte één telfout. Over de gepubliceerde skill zegt de run
+weinig, omdat een andere versie is getest. Voor een geldige test volgt de procedure in
+[`tests/README.md`](../README.md#procedure): laad de skill expliciet uit een bekende versie van de
+repository en controleer vóór de run welke bestanden de assistent heeft.
 
 ## Gevolgen voor de skill
 
-- **Lever de extensie mee in elke verpakking** van de skill, ook in de workspace-registry. Laat de
-  skill stoppen of expliciet "SHACL-validatie onvolledig" melden als het bestand ontbreekt, in
-  plaats van zonder extensie door te gaan.
+- **Laat de skill stoppen of expliciet "SHACL-validatie onvolledig" melden als de extensie
+  ontbreekt**, in plaats van zonder extensie door te gaan. Een assistent kan een skill zelf
+  samenstellen of maar gedeeltelijk laden; de skill moet dat zelf opmerken.
+- **Zet de versie van de skill in de skill zelf**, zodat een rapport kan vermelden welke versie is
+  gebruikt en een mengvorm herkenbaar is. `nl.gov.previous-name: nl-sbb` en de oude naam
+  `validatie-nl-sbb` zijn in deze run niet herkend als verouderd.
 - **Neem het bekende vals positief op in de skill**: een begrip dat via `isothes:broader*` onder een
   ander begrip hangt en toch door het profiel als "zonder relaties" wordt gemeld, is een beperking
   van het profiel en geen fout in het kader. Dat staat nu alleen in `verwacht.md`. `conflicts.md`

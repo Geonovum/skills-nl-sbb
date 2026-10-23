@@ -4,8 +4,8 @@ Eerste testrun met een Europese assistent. Gescoord op 2026-10-23 tegen het ijkp
 
 | | |
 | --- | --- |
-| Assistent | Mistral, met internettoegang en Python 3.12.14 *(omgeving en modelversie nog aan te vullen)* |
-| Skillversie | `validatie-nl-sbb`, met een scanscript (`scan.py`) en een bestand `shacl.md` *(precieze versie nog aan te vullen)*. Andere indeling dan zowel de versie van augustus als de gepubliceerde 0.1.0 |
+| Assistent | Mistral Vibe (chat.mistral.ai/code) met het nieuwste Mistral-model dat op 2026-09-03 beschikbaar was (een voorganger van Mistral Large 4.0; precieze versie niet vastgelegd); internettoegang en Python 3.12.14 |
+| Skillversie | `validatie-nl-sbb`, een oudere versie met een scanscript (`scan.py`) en een bestand `shacl.md`, zonder de extensie. Geen gepubliceerde versie; andere indeling dan zowel de versie van augustus als 0.1.0 |
 | Testkader | IMGeo-begrippenkader, [`https://upload.begrippenxl.nl/storage/imgeo/imgeo.ttl`](https://upload.begrippenxl.nl/storage/imgeo/imgeo.ttl): 6.102 triples, 464 begrippen, 57 collecties, 1 kader. Op 2026-10-23 opnieuw gedownload: zelfde aantal triples, SHA-256 `67c104bf13f56a8ee85418231e1a02c9705b123cc90852bb6da08e770a3ff36e` |
 | Verloop | Drie prompts: (1) "valideer deze URL", waarop alleen de basisreview draaide; (2) "voer de SHACL-module en de bronnencontrole uit"; (3) "bied het rapport aan als Markdown" |
 
@@ -57,9 +57,9 @@ staan; geen enkel begrip heeft `dct:source`.
    [verslag van 2026-08-28](2026-08-28-portabiliteit-en-lichte-modellen.md), met een andere oorzaak:
    de omgeving gaf geen toegang tot de bestanden naast `SKILL.md`, of de assistent heeft ze niet
    gezocht. De zelfcontrole uit de skill (er moet minstens één shape uit de extensie in de
-   resultaten staan) had dit moeten tegenhouden. Bij de run van
-   [2026-10-23](2026-10-23-europese-assistent-imgeo-mini.md) bleek dat de extensie niet in de
-   skill-assets van de workspace-registry zat.
+   resultaten staan) had dit moeten tegenhouden. De gebruikte oudere skillversie bevatte de
+   extensie niet; zie ook [2026-10-23](2026-10-23-europese-assistent-imgeo-mini.md), waar de
+   assistent de skill zelf samenstelde uit verschillende versies.
 2. **De SHACL-uitkomst is verkeerd samengevat.** De telling klopt, maar de toelichting schrijft
    alle 351 waarschuwingen toe aan één oorzaak. Daardoor missen de 127 dubbele voorkeurstermen in
    het rapport, terwijl ze in de ruwe uitvoer stonden.
