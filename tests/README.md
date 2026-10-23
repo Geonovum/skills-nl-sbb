@@ -74,7 +74,8 @@ uitputtend en welke op steekproef zijn gedaan.
 | 2026-10-07 | Stresstest met de export van de stelselcatalogus (zonder assistent) | – | [stresstest](stresstest/stelselcatalogus.md) |
 | 2026-10-23 | IMGeo-mini met SHACL-module en bronnencontrole | 1 Europees model | [verslag](verslagen/2026-10-23-europese-assistent-imgeo-mini.md) |
 
-**Nog open:** een testronde met een open-source of Europese assistent die alle acceptatiecriteria
-haalt, en een ronde met een lokaal draaiende assistent. De Europese assistent haalde op 2026-10-23
-vijf van de zes criteria op IMGeo-mini (één verzonnen bevinding en één telfout); op 2026-09-03
-ontbrak de extensie en miste hij de harde fouten. Zie de verslagen.
+**Nog open:** een testronde met de gepubliceerde skill en een open-source of Europese assistent
+die alle acceptatiecriteria haalt, en een ronde met een lokaal draaiende assistent. De runs met een
+Europese assistent van 2026-09-03 en 2026-10-23 gebruikten een oudere of door de assistent zelf
+samengestelde skillversie, zonder de extensie; op IMGeo-mini haalde de assistent vijf van de zes
+criteria. Zie de verslagen.
