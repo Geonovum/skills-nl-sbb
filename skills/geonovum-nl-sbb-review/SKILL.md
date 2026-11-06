@@ -36,6 +36,16 @@ Als de gebruiker vraagt om wijzigingen door te voeren, antwoord dan:
 Deze skill is bedoeld voor beoordeling en advies. Ik voer daarom geen wijzigingen door in het bronbestand. Ik kan wel aangeven welke onderdelen aangepast zouden moeten worden en waarom.
 ```
 
+**Voorstellen in het rapport mogen wel.** Een voorbeeld of een voorgestelde formulering in het rapport is geen wijziging van het bronbestand. Geef zo'n voorstel bij ingewikkelde meldingen, vage of circulaire definities, termconventies en het uitsplitsen van velden, als **huidige tekst naast voorgestelde tekst**. Markeer het altijd als suggestie: de gebruiker of een deskundige beoordeelt het en voert het zelf door.
+
+## Menselijke zeggenschap
+
+De skill bereidt voor, controleert en draagt verbeteringen aan; inhoudelijke keuzes blijven bij de gebruiker, deskundigen en bevoegde besluitvormers. Daarom:
+
+- Nieuwe of gewijzigde definities, de betekenis van relaties en besluiten over status en publicatie krijgen altijd de vervolgactie **Inhoudelijk beoordelen** of **Overleggen**, nooit **Zelf aanpassen** (zie "Vervolgactie per bevinding").
+- Het publicatieadvies is een advies en **geen vaststellingsbesluit**. Zeg dat in het rapport en noem dat vaststelling en publicatie bij de bevoegde beheerder of besluitvormer liggen.
+- Maak zichtbaar wat de skill heeft onderzocht en wat niet, zodat de gebruiker het advies bewust kan beoordelen in plaats van het routinematig over te nemen.
+
 ## Normatieve basis en versie
 
 De beoordeling is gebaseerd op het NL-SBB SKOS-profiel, het normatieve **SHACL-profiel `skos-ap-nl`**, SKOS, en ISO 25964-relaties waar gebruikt.
@@ -88,7 +98,7 @@ Voer de review altijd in deze volgorde uit.
 
 **Stap 3 — Basiscontrole en optionele modules.** Controleer verplichte eigenschappen, termen, definities, relaties, topbegrippen, verweesde begrippen en codes (detailregels in [`reference.md`](reference.md)). Twee onderdelen zijn **optionele modules** die je alleen uitvoert nadat de gebruiker ze heeft gekozen (zie "Optionele modules" hieronder): de **SHACL-validatie** en de **bronnencontrole**.
 
-**Stap 4 — Inhoudelijke review.** Beoordeel begrijpelijkheid, consistentie, begripsafbakening, relatiekwaliteit, bronkwaliteit, **termconventies (Best Practice 1: zelfstandig naamwoord, enkelvoud, kleine letters, geen werkwoorden/afkortingen/leestekens — zie [`reference.md`](reference.md))** en publicatiekwaliteit. Deze punten toetst SHACL niet; benoem ze als waarschuwing, aanbeveling of informatief. Toets termconventies ook absoluut per term, niet alleen op onderlinge consistentie: een consequent doorgevoerde afwijking valt anders niet op.
+**Stap 4 — Inhoudelijke review.** Beoordeel begrijpelijkheid, consistentie, begripsafbakening, relatiekwaliteit, bronkwaliteit, **termconventies (Best Practice 1: zelfstandig naamwoord, enkelvoud, kleine letters, geen werkwoorden/afkortingen/leestekens — zie [`reference.md`](reference.md))** en publicatiekwaliteit. Deze punten toetst SHACL niet; benoem ze als waarschuwing, aanbeveling of informatief. Toets termconventies ook absoluut per term, niet alleen op onderlinge consistentie: een consequent doorgevoerde afwijking valt anders niet op. Geef bij een definitie waarin uitleg, toelichting of voorbeelden zijn gemengd een concreet splitsingsvoorstel, en adviseer bij overlap niet automatisch om te harmoniseren: een eigen definitie met een expliciete koppeling kan passender zijn (zie [`reference.md`](reference.md)).
 
 ## Optionele modules
 
@@ -97,18 +107,32 @@ De skill kent twee optionele modules bovenop de basisreview:
 - **SHACL-validatie** — machinale validatie tegen het normatieve profiel + extensie (zie "SHACL-validatie uitvoeren").
 - **Bronnencontrole** — verifieert of de gebruikte bronnen bereikbaar zijn en of hun host op een bekende bronnenlijst staat (zie "Bronnencontrole uitvoeren" en [`bronnenlijst.md`](bronnenlijst.md)).
 
-**De eerste keer** dat de skill een begrippenkader beoordeelt, legt de agent beide modules expliciet als keuze voor aan de gebruiker, bijvoorbeeld:
+**De eerste keer** dat de skill een begrippenkader beoordeelt, legt de agent kort uit wat de review wel en niet doet, en legt hij de modules en de rapportvariant als keuze voor. Houd dit kort, bijvoorbeeld:
 
 ```text
-Ik voer de basisreview van je begrippenkader uit. Daarnaast zijn er twee optionele modules:
+Ik beoordeel je begrippenkader volgens NL-SBB 1.0.0. Ik lees Turtle, RDF/XML, Excel, Word
+of een URL; Excel en Word kan ik alleen machinaal valideren als ze betrouwbaar naar RDF
+om te zetten zijn. Ik wijzig je bestand niet.
 
-1. SHACL-validatie — machinale toetsing tegen het normatieve NL-SBB-profiel (skos-ap-nl.ttl) met pySHACL, aangevuld met de skill-extensie.
-2. Bronnencontrole — ik controleer of de gebruikte bronnen bereikbaar zijn en of ze op de bekende bronnenlijst staan.
+Wat de basisreview doet: verplichte onderdelen, termen, definities, vastgelegde relaties,
+topbegrippen, codes en de inhoudelijke kwaliteit beoordelen.
+Wat hij niet doet: zoeken naar relaties die ontbreken, de inhoudelijke juistheid van een
+definitie vaststellen of het kader vaststellen voor publicatie.
 
-Wil je beide modules, één ervan, of alleen de basisreview? De bronnenlijst kan ik desgewenst samen met jou uitbreiden.
+Optioneel (volgorde: basisreview, dan SHACL, dan bronnen):
+1. SHACL-validatie — machinale toetsing tegen het normatieve NL-SBB-profiel (skos-ap-nl.ttl)
+   met pySHACL, aangevuld met de skill-extensie. Controleert de structuur, niet de inhoud.
+2. Bronnencontrole — ik controleer of de gebruikte bronnen bereikbaar zijn en of ze op de
+   bekende bronnenlijst staan. Ik beoordeel niet of een bron inhoudelijk geschikt is.
+
+Rapport: technisch (met RDF-namen en SHACL-details) of in begrijpelijke taal (om te
+bespreken met minder technische collega's). Beide bevatten dezelfde bevindingen.
+
+Welke modules wil je, en welk rapport? Ken je de skill al, zeg dan bijvoorbeeld
+"alles, technisch" en ik begin meteen.
 ```
 
-Voer een module pas uit na een duidelijke keuze. Onthoud de keuze binnen dezelfde review; vraag niet opnieuw per begrip. Vermeld in het rapport welke modules zijn uitgevoerd en welke zijn overgeslagen.
+Heeft de gebruiker de keuzes al in de vraag gegeven (bijvoorbeeld "review met SHACL, technisch rapport"), sla de uitleg dan over en begin direct. Voer een module pas uit na een duidelijke keuze. Onthoud de keuzes binnen dezelfde review; vraag niet opnieuw per begrip. Kiest de gebruiker geen rapportvariant, gebruik dan **technisch**. Vermeld in het rapport welke modules zijn uitgevoerd en welke zijn overgeslagen.
 
 ## SHACL-validatie uitvoeren
 
@@ -203,58 +227,96 @@ Rapporteer de bevindingen van deze module in een aparte sectie (zie de optionele
 
 Maak altijd onderscheid tussen harde regels en kwaliteitsadviezen; presenteer een advies nooit als harde overtreding als dat niet expliciet uit NL-SBB volgt. Volledige uitwerking in [`reference.md`](reference.md).
 
+## Vervolgactie per bevinding
+
+Geef elke fout, waarschuwing en aanbeveling precies één vervolgactie, zodat de gebruiker ziet wat direct kan en wat overleg vraagt:
+
+- **Zelf aanpassen** — een eenduidige, technische correctie zonder inhoudelijke keuze (bijv. een ontbrekende taal-tag, een dubbele code, een term met een hoofdletter, een ontbrekende `skos:inScheme`).
+- **Inhoudelijk beoordelen** — vraagt een inhoudelijke keuze van de gebruiker of een deskundige (bijv. een vage definitie, een twijfelachtige relatie, mogelijke overlap tussen begrippen).
+- **Overleggen** — vraagt afstemming met anderen, zoals de eigenaar van het begrip, een jurist, een beleidsmedewerker of de beheerder van een ander kader (bijv. harmoniseren met een extern kader, een begrip dat in meerdere kaders anders is gedefinieerd, publicatie).
+
+Twijfel je tussen twee, kies dan de zwaardere. Zie ook "Menselijke zeggenschap".
+
 ## Totaaloordeel
 
-Kies precies één oordeel:
+Kies precies één oordeel met deze beslisregel. Loop de regels van boven naar beneden af; de eerste die geldt, bepaalt het oordeel.
 
-- **Voldoet aan NL-SBB** — geen fouten, hooguit beperkte waarschuwingen, bron volledig beoordeeld, inhoudelijke kwaliteit voldoende.
-- **Voldoet grotendeels aan NL-SBB** — geen blokkerende fouten, wel waarschuwingen of adviezen; publicatie mogelijk na beperkte correcties of expliciete risicoacceptatie.
-- **Voldoet gedeeltelijk aan NL-SBB** — enkele fouten of ontbrekende onderdelen; publicatie nog niet verstandig zonder herstel.
-- **Voldoet niet aan NL-SBB** — meerdere harde regels geschonden, verplichte eigenschappen structureel afwezig, of structuur fundamenteel onjuist.
-- **Niet volledig te beoordelen** — bron niet (volledig) beschikbaar of niet leesbaar.
+1. **Niet volledig te beoordelen** — de bron kon niet (volledig) worden gelezen en de beschikbare inhoud volstaat niet om duidelijke fouten te signaleren.
+2. **Voldoet niet aan NL-SBB** — fouten op drie of meer verschillende regels, een verplichte eigenschap (definitie, voorkeursterm, `skos:inScheme`) die bij de meerderheid van de begrippen ontbreekt, of een fundamenteel onjuiste structuur (bijv. geen `skos:ConceptScheme`, of begrippen die niet als begrip zijn getypeerd).
+3. **Voldoet gedeeltelijk aan NL-SBB** — één of meer fouten die niet onder regel 2 vallen.
+4. **Voldoet grotendeels aan NL-SBB** — geen fouten, wel één of meer waarschuwingen met de vervolgactie *Inhoudelijk beoordelen* of *Overleggen*.
+5. **Voldoet aan NL-SBB** — geen fouten en hooguit waarschuwingen met de vervolgactie *Zelf aanpassen*; de bron is volledig beoordeeld.
+
+Het publicatieadvies volgt uit het oordeel: *Voldoet* → ja; *Voldoet grotendeels* → onder voorwaarden; *Voldoet gedeeltelijk* en *Voldoet niet* → nee; *Niet volledig te beoordelen* → niet te bepalen. Noem in het rapport altijd **welke bevindingen het oordeel bepalen** (de nummers), zodat hetzelfde kader met dezelfde keuzes tot hetzelfde oordeel leidt en een ander oordeel bij een volgende versie te herleiden is. Levert de gebruiker een eerder rapport mee, verklaar een verschil in oordeel dan aan de hand van de bevindingen die zijn opgelost of bijgekomen.
 
 ## Rapportstructuur
 
-Geef altijd een uitgebreid rapport in de taal van de gebruiker, met deze secties:
+Geef altijd een volledig rapport in de taal van de gebruiker. Het rapport is **gelaagd**: eerst het overzicht en het advies, daarna de bevindingen in detail, en tot slot de verantwoording.
 
 ```text
 # NL-SBB-reviewrapport
 
 ## 1. Samenvatting
-Bron / Type invoer / Beoordeling / Aantal fouten / Aantal waarschuwingen /
-Aantal aanbevelingen / Aantal informatieve bevindingen /
-Gebruikte NL-SBB-versie + status (standaard 1.0.0) en profielbron / Korte conclusie
+- Bron / type invoer / volledig gelezen: ja/nee
+- Gebruikte NL-SBB-versie + status (standaard 1.0.0) en profielbron
+- Uitgevoerde controles: basisreview / SHACL-validatie: uitgevoerd of overgeslagen /
+  bronnencontrole: uitgevoerd of overgeslagen
+- Telling: fouten, waarschuwingen, aanbevelingen, informatief
+- Telling per vervolgactie: zelf aanpassen, inhoudelijk beoordelen, overleggen
+- De drie belangrijkste vervolgstappen
 
-## 2. Totaaloordeel
-Leg uit waarom het kader wel/grotendeels/gedeeltelijk/niet voldoet.
+## 2. Totaaloordeel en publicatieadvies
+- Oordeel en waarom (met de nummers van de bevindingen die het oordeel bepalen)
+- Geschikt voor publicatie: ja / nee / onder voorwaarden / niet te bepalen
+- Belangrijkste blokkade / belangrijkste verbeterpunt / aanbevolen vervolgstap
+- Dit advies is geen vaststellingsbesluit; vaststelling en publicatie liggen bij de bevoegde beheerder of besluitvormer.
 
 ## 3. Fouten
-| Nr. | Begrip/onderdeel | Bevinding | Waarom dit niet voldoet aan NL-SBB | Advies |
-
 ## 4. Waarschuwingen
-| Nr. | Begrip/onderdeel | Bevinding | Waarom dit aandacht vraagt volgens NL-SBB | Advies |
-
 ## 5. Aanbevelingen
-| Nr. | Onderdeel | Aanbeveling | Reden | Prioriteit |
+(per bevinding een blok, zie hieronder)
 
 ## 6. Informatieve bevindingen
 Alleen betrouwbare aantallen en observaties.
 
-## 7. Gecontroleerde NL-SBB-aspecten
-Wat wel en niet gecontroleerd kon worden (incl. profielbron/-versie, de gebruikte validatie-instellingen — `advanced=True`, `inference=rdfs` — en de pySHACL-versie indien bekend). Vermeld welke optionele modules zijn uitgevoerd en welke zijn overgeslagen.
-
-## 8. Publicatieadvies
-- Geschikt voor publicatie: ja/nee/onder voorwaarden
-- Belangrijkste blokkade / Belangrijkste verbeterpunt / Aanbevolen vervolgstap
+## 7. Wat wel en niet is gecontroleerd
+- Uitgevoerd / overgeslagen / niet door deze skill te controleren (ontbrekende relaties,
+  inhoudelijke juistheid van definities, vaststelling)
+- Profielbron/-versie, validatie-instellingen (`advanced=True`, `inference=rdfs`),
+  pySHACL-versie indien bekend
 ```
 
-**Optionele module-secties** (alleen opnemen als de bijbehorende module is uitgevoerd; plaats ze vóór "Publicatieadvies"):
+**Blok per bevinding.** Gebruik geen brede tabellen met veel kolommen; die vragen horizontaal scrollen. Geef elke fout, waarschuwing en aanbeveling een eigen blok met een tabel van twee kolommen:
+
+```text
+### F1 — <korte titel>
+| Onderdeel | Inhoud |
+|---|---|
+| Begrip | <voorkeursterm> (<URI of code>) |
+| Veld of relatie | <Nederlandse veldnaam> (`<RDF-eigenschap>`) |
+| Probleem | <wat er aan de hand is> |
+| Waarom dit belangrijk is | <waarom dit volgens NL-SBB niet voldoet of aandacht vraagt> |
+| Voorgestelde actie | <wat de gebruiker kan doen> |
+| Vervolgactie | Zelf aanpassen / Inhoudelijk beoordelen / Overleggen |
+```
+
+- Nummer fouten F1, F2…, waarschuwingen W1, W2… en aanbevelingen A1, A2…; geef bij aanbevelingen ook een rij *Prioriteit*.
+- Noem velden met de Nederlandse naam uit NL-SBB en de RDF-naam erachter, bijv. "Definitie (`skos:definition`)" of "Heeft bovenliggend begrip (`skos:broader`)". De lijst staat in [`reference.md`](reference.md) onder "Veldnamen".
+- Noem het begrip met URI of code, zodat de gebruiker het in de eigen editor terugvindt.
+- Voeg bij ingewikkelde meldingen of een tekstvoorstel twee rijen toe: *Huidige tekst* en *Voorgestelde tekst* (zie "Hoofdregel").
+- Raakt dezelfde bevinding veel begrippen, maak dan één blok met de lijst van betrokken begrippen in plaats van een blok per begrip.
+
+**Grote rapporten.** Zijn er meer dan twintig bevindingen, geef dan eerst secties 1, 2 en 7 en de fouten, en vraag of de gebruiker de waarschuwingen en aanbevelingen in één keer wil, of per vervolgactie of per begrip. Het rapport is pas compleet als alle bevindingen zijn gegeven of de gebruiker heeft aangegeven dat niet te willen.
+
+**Rapportvariant.** Het *technische* rapport gebruikt RDF-namen, shapes en focus nodes. Het rapport in *begrijpelijke taal* is bedoeld voor overleg met minder technische betrokkenen: noem velden alleen bij hun Nederlandse naam, laat shapes en focus nodes weg, leg vaktermen (zoals topbegrip of harmonisatierelatie) in één zin uit en houd zinnen kort. Beide varianten bevatten **dezelfde bevindingen, nummers, aantallen, oordeel, bronnen en beperkingen**; alleen de formulering verschilt. Bied na een technisch rapport aan om ook een versie in begrijpelijke taal te maken.
+
+**Optionele module-secties** (alleen opnemen als de bijbehorende module is uitgevoerd; plaats ze vóór sectie 7):
 
 ```text
 ## SHACL-validatie (optionele module)
 - Profielbron + versie / validatie-instellingen (advanced, inference) / pySHACL-versie
 - Aantal sh:Violation / sh:Warning / sh:Info (op basis van de telling per ernstniveau, niet het conforms-veld)
-| Shape | Severity | Focus node | Kernboodschap |
+- Per shape: shape, severity, aantal focus nodes, kernboodschap (de bevindingen zelf staan in secties 3–5)
 
 ## Bronnencontrole (optionele module)
 | Bron (host) | Op bekende lijst? | Bereikbaarheid | Interpretatie |
@@ -270,7 +332,7 @@ Professioneel en toetsend; concreet en controleerbaar; onderscheid tussen fouten
 
 ## Minimale kwaliteitscriteria
 
-Een review is pas compleet als is gerapporteerd: welke bron is beoordeeld; of die volledig toegankelijk was; **tegen welke NL-SBB-versie en profielbron is gevalideerd (standaard 1.0.0; bij een andere versie ook de status DEF/VV/CV en de bevestiging van de gebruiker)**; met welke validatie-instellingen (`advanced=True`, `inference=rdfs`) en of de extensie is meegenomen; het totaaloordeel; het aantal fouten, waarschuwingen en aanbevelingen; welke NL-SBB-aspecten zijn gecontroleerd; of publicatie wordt aanbevolen; en welke beperkingen gelden. Vul het rapport aan als een onderdeel ontbreekt.
+Een review is pas compleet als is gerapporteerd: welke bron is beoordeeld; of die volledig toegankelijk was; **tegen welke NL-SBB-versie en profielbron is gevalideerd (standaard 1.0.0; bij een andere versie ook de status DEF/VV/CV en de bevestiging van de gebruiker)**; met welke validatie-instellingen (`advanced=True`, `inference=rdfs`) en of de extensie is meegenomen; het totaaloordeel en welke bevindingen het bepalen; het aantal fouten, waarschuwingen en aanbevelingen; per bevinding begrip, veld of relatie, probleem, reden, voorgestelde actie en vervolgactie; welke NL-SBB-aspecten zijn gecontroleerd en welke niet; of publicatie wordt aanbevolen, met de vermelding dat dit geen vaststellingsbesluit is; en welke beperkingen gelden. Vul het rapport aan als een onderdeel ontbreekt.
 
 ## Gerelateerde bronnen
 
