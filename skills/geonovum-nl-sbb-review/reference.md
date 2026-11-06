@@ -2,6 +2,38 @@
 
 Deze pagina bevat de detailregels die niet in de hoofdskill passen: controlelijsten per SKOS-eigenschap, de ISO 25964-relaties, definitietypen, en de meegeleverde SHACL-extensie. De hoofdskill ([`SKILL.md`](SKILL.md)) verwijst hiernaar.
 
+## Veldnamen
+
+Noem velden in het rapport met de Nederlandse naam uit NL-SBB (hoofdstuk Taalbinding) en de RDF-eigenschap erachter, bijv. "Definitie (`skos:definition`)". In het rapport in begrijpelijke taal volstaat de Nederlandse naam.
+
+| Nederlandse naam | RDF-eigenschap |
+|---|---|
+| Voorkeursterm | `skos:prefLabel` |
+| Alternatieve term | `skos:altLabel` |
+| Zoekterm | `skos:hiddenLabel` |
+| Code | `skos:notation` |
+| Definitie | `skos:definition` |
+| Uitleg | `rdfs:comment` |
+| Toelichting | `skos:scopeNote` |
+| Voorbeeld | `skos:example` |
+| Heeft bron | `dct:source` |
+| Bronverwijzing | `dct:bibliographicCitation` |
+| In kader | `skos:inScheme` |
+| Is topbegrip van / heeft topbegrip | `skos:topConceptOf` / `skos:hasTopConcept` |
+| Heeft bovenliggend begrip | `skos:broader` |
+| Heeft onderliggend begrip | `skos:narrower` |
+| Is gerelateerd aan | `skos:related` |
+| Is specialisatie van / is generalisatie van | `isothes:broaderGeneric` / `isothes:narrowerGeneric` |
+| Is onderdeel van / omvat | `isothes:broaderPartitive` / `isothes:narrowerPartitive` |
+| Is exemplaar van / is categorie van | `isothes:broaderInstantial` / `isothes:narrowerInstantial` |
+| Is exact overeenkomstig | `skos:exactMatch` |
+| Is vrijwel overeenkomstig | `skos:closeMatch` |
+| Heeft overeenkomstig bovenliggend / onderliggend | `skos:broadMatch` / `skos:narrowMatch` |
+| Is overeenkomstig verwant | `skos:relatedMatch` |
+| Wijzigingsnotitie / historienotitie / redactionele notitie | `skos:changeNote` / `skos:historyNote` / `skos:editorialNote` |
+| Naam (van kader of collectie) | `rdfs:label`, `dct:title` |
+| Bevat (collectie) | `skos:member` |
+
 ## Ondersteunde talen
 
 De skill ondersteunt Nederlands en Engels. Controleer bij meertalige kaders of taal-tags correct zijn (`@nl`, `@en`), of Nederlandse en Engelse termen en definities consistent zijn, en of vertalingen inhoudelijk overeenkomen. Het ontbreken van Engels is niet automatisch een fout; het ontbreken van Nederlands is in NL-SBB-context meestal een waarschuwing of fout, afhankelijk van de publicatiecontext.
@@ -65,6 +97,16 @@ Controleer per `skos:definition`: is de definitie aanwezig, beschrijft ze het be
 Definitietypen (beoordeel waar mogelijk): (1) typering / genus-differentia, (2) samenstelling / geheel-deel, (3) onderdeel, (4) relatie, (5) kenmerk.
 
 Onderscheid tussen: `skos:definition` (precieze betekenis), `rdfs:comment` (eenvoudige uitleg), `skos:scopeNote` (gebruik, grens, reikwijdte), `skos:example` (voorbeelden). Signaleer als waarschuwing wanneer uitleg, voorbeelden of toelichtingen de definitie vervangen of tegenspreken.
+
+**Gemengde beschrijvingen uitsplitsen.** Staan in één veld meerdere soorten informatie (bijvoorbeeld een definitie met daarachter een voorbeeld of een gebruiksregel), geef dan een concreet splitsingsvoorstel als *huidige tekst* naast *voorgestelde indeling*: welk deel definitie blijft en welk deel naar uitleg, toelichting of voorbeeld gaat. Vervolgactie: *Inhoudelijk beoordelen*, omdat de definitie zelf verandert.
+
+## Overlap en hergebruik
+
+Bij (bijna) identieke definities of begrippen die op elkaar lijken, binnen het kader of met een ander kader:
+
+- Adviseer niet automatisch om te harmoniseren of samen te voegen. Noem als gelijkwaardige optie: een eigen definitie behouden en die expliciet koppelen met een harmonisatierelatie naar het andere kader (`skos:exactMatch`, `skos:closeMatch`, `skos:broadMatch`, `skos:narrowMatch` of `skos:relatedMatch`).
+- Wijs erop dat een verschil in context (bijvoorbeeld juridisch, ecologisch of geografisch) een eigen definitie kan rechtvaardigen.
+- Geef deze bevindingen de vervolgactie *Inhoudelijk beoordelen*, of *Overleggen* als een ander kader of een andere eigenaar betrokken is.
 
 ## Bronnen
 
